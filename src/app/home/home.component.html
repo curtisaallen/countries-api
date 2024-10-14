@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <nav class="d-flex flex-column flex-md-row justify-content-between mb-4">
+                <div class="search-box d-flex justify-content-center align-items-center mb-sm-3">
+                      <div class="input-group d-flex justify-content-center align-items-center">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" class="svg-inline--fa fa-magnifying-glass Search-Icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                        </svg>
+                        <input [(ngModel)]="search" (change)="onSearchCountry($event)" class="form-control border-end-0 border-0" type="search" placeholder="Search for a country..." />
+                      </div>                      
+                </div>
+                <div class="country-select">
+                    <select class="form-select" (change)="onCountrySelect($event)">
+                        <option selected value="Select option">Filter By Region</option>
+                        <option *ngFor="let region of uniqueRegions" [value]="region">{{ region }}</option>
+                    </select>
+                </div>
+            </nav>
+            <section class="container main">
+                <div class="row row-cols-4">
+                    
+                   
+
+                    <div *ngFor="let country of filteredCountryList" class="col-12 col-md-3">
+                        <div class="card border-0">
+                            <a [routerLink]="['/details', country.name.common]">
+                                <div class="card-header">
+                                    <img [src]="country.flags.svg" [alt]="country.name.common" class="card-img-top" />
+                                </div>
+                                <div class="card-body">
+                                <h5 class="card-title">{{ country.name.common }}</h5>
+                                <p class="card-text">
+                                    Population: <span>{{ country.population }}</span><br />
+                                    Region: <span>{{ country.region }}</span><br />
+                                    Capital: <span>{{ country.capital }}</span>
+                                </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+
+                  </div>
+            </section>
+        </div>
+    </div>
+</div>
